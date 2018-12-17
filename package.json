@@ -1,0 +1,24 @@
+{
+  "name": "eksamenthirdsem",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000E\u0000k\u0000s\u0000a\u0000m\u0000e\u0000n\u0000T\u0000h\u0000i\u0000r\u0000d\u0000S\u0000e\u0000m\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wexr/EksamenThirdSem.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wexr/EksamenThirdSem/issues"
+  },
+  "homepage": "https://github.com/wexr/EksamenThirdSem#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  }
+}
