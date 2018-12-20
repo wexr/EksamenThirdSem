@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Eksamen 3. Semester 2018 - Benjamin Ejrup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <style>
+        
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border-width: 5px;
+    align-content: center;
+
+}
+
+td,
+th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+tr:nth-child(odd) {
+    background-color: grey;
+
+}
+
+tr:nth-child(even) {
+    background-color: rgb(236, 236, 238);
+}
+
+.onClickTal {
+    cursor: pointer;
+}
+
+.onClickTal:hover {
+    background-color: rgb(123, 162, 247)
+}
+
+.topheader {
+    background-color: yellow;
+}
+h2{
+   text-align: center;
+}
+.tables{
+    align-content: center;
+}    
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+        </style>
+</head>
+
+<body>
+
+        <div class="topnav">
+                <a href="index.html">Start</a>
+                <a class="active" href="#news">EMNE</a>
+                <a href="om.html">Om mig</a>
+                <a href="krypto.html">Bitcoin Converter</a>
+              </div>
+
+    <h2>Oversigt over CryptoBanks kunder, konti og transaktioner.</h2>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <p id="para"></p>
+    
+
+    <table>
+        <ul id="liste"></ul>
+    </table>
+    
+    
+    <table>
+        <!--tr Definere row, og definere celler-->
+
+        <tr class="tr">
+            <th>Kontonr:</th>
+            <th>Valutatype:</th>
+            <th>Saldo:</th>
+            
+        </tr>
+        <tr>
+            <th id="id_1" class="onClickTal" onclick="hentinfo3(this.id)">data</th>
+            <th id="id_2">data</th>
+            <th id="id_3">data</th>
+            
+        </tr>
+    </table>
+    <br>
+    <br>      
+    <table>
+        <!--tr Definere row, og definere celler-->
+
+        <tr class="tr">
+            <th>Valutatype:</th>
+            <th>dag:</th>
+            <th>md:</th>
+            <th>år:</th>
+            <th>Beløb:</th>
+            
+        </tr>
+        <tr>
+            <th id="trans_1">Bitcoin</th>
+            <th id="trans_2">20</th>
+            <th id="trans_3">12</th>
+            <th id="trans_4">2018</th>
+            <th id="trans_5">3</th>
+            
+        </tr>
+
+        <tr>
+            <th id="trans_1">Ether</th>
+            <th id="trans_2">11</th>
+            <th id="trans_3">11</th>
+            <th id="trans_4">2018</th>
+            <th id="trans_5">3</th>
+            
+        </tr>
+
+        <tr>
+            <th id="trans_1">Bitcoin</th>
+            <th id="trans_2">4</th>
+            <th id="trans_3">7</th>
+            <th id="trans_4">2017</th>
+            <th id="trans_5">3</th>
+            
+        </tr>
+    </table>
+    <script>
+      
+      //jQuery Append : 
+      var startappend =
+        "<tr><th>Kunde ID:</th><th>Password:</th><th>CPR-nr:</th><th>Fornavn:</th><th>Efternavn:</th><th>Adresse:</th></tr>"
+    $('#liste').append($(startappend));
+        hentinfo();
+
+        function hentinfo() {
+            console.log("funktion starter");
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function () {
+                // Ved hver readystatechange den modtager, tester den om den er 4(Har fået respons)
+                // og at serveren siger 200(alt ok)
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("virker")
+                    console.log("response fra data" + this.response);
+                    //laver det om til object
+                    var obj = JSON.parse(this.response)
+
+
+                    for (let index = 0; index < obj.length; index++) {
+                        var start = '<tr>';
+                        var unikt_id = '<td id="' + obj[index].unikt_ID +
+                            '" class = "onClickTal" onclick = "hentinfo2(this.id)">' + obj[index].unikt_ID +
+                            ' </td>'
+                        var password = '<td>' + obj[index].password + ' </td>'
+                        var cpr = '<td>' + obj[index].cpr + ' </td>'
+                        var fnavn = '<td>' + obj[index].fnavn + ' </td>'
+                        var lnavn = '<td>' + obj[index].lnavn + ' </td>'
+                        var adresse = '<td>' + obj[index].adresse + ' </td>'
+                        var slut = '</tr>'
+                        var finallinje = start + unikt_id + password + cpr + fnavn + lnavn +
+                            adresse + slut;
+                        $('#liste').append($(finallinje));
+                    }
+                }
+            }
+            xmlhttp.open("GET", "http://localhost:8008/hentinfo", true);
+            xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xmlhttp.send();
+
+        }
+
+
+
+        function hentinfo2(idnr) {
+            console.log("idnr er " + idnr)
+            var params = "idnr=" + idnr + ";";
+            console.log("hent data function starter, params indeholder:" + params);
+            var xmlhttp2 = new XMLHttpRequest();
+            console.log("readystate = " + this.readyState);
+            console.log("status = " + this.status)
+            xmlhttp2.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("virker")
+                    console.log("response fra data" + this.response);
+                    //laver det om til object
+                    var obj2 = JSON.parse(this.response)
+
+                    document.getElementById("id_1").innerHTML = obj2[0].kontonr;
+                    document.getElementById("id_2").innerHTML = obj2[0].valutatype;
+                    document.getElementById("id_3").innerHTML = obj2[0].saldo;
+                    
+                }
+            }
+            xmlhttp2.open("POST", "http://localhost:8008/hentinfo2", true);
+            xmlhttp2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xmlhttp2.send(params);
+
+        }
+
+        function hentinfo3(idnr) {
+            console.log("idnr er " + idnr)
+            var params = "idnr=" + idnr + ";";
+            console.log("hent data function starter, params indeholder:" + params);
+            var xmlhttp2 = new XMLHttpRequest();
+            console.log("readystate = " + this.readyState);
+            console.log("status = " + this.status)
+            xmlhttp2.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("virker")
+                    console.log("response fra data" + this.response);
+                    //laver det om til object
+                    var obj3 = JSON.parse(this.response)
+
+                    document.getElementById("trans_1").innerHTML = obj3[0].valutatype;
+                    document.getElementById("trans_2").innerHTML = obj3[0].dag;
+                    document.getElementById("trans_3").innerHTML = obj3[0].md;
+                    document.getElementById("trans_4").innerHTML = obj3[0].aar;
+                    document.getElementById("trans_5").innerHTML = obj3[0].amount;
+                    
+                }
+            }
+            xmlhttp2.open("POST", "http://localhost:8008/hentinfo3", true);
+            xmlhttp2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xmlhttp2.send(params);
+
+        }
+     
+
+
+    </script>
+
+</body>
+
+</html>

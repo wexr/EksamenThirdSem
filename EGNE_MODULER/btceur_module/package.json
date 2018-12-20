@@ -1,0 +1,19 @@
+{
+  "name": "bitcoinapi",
+  "version": "1.0.0",
+  "description": "Et modul, som der viser værdien af bitcoin ",
+  "main": "btceur.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wexr/EksamenThirdSem"
+  },
+  "author": "Benjamin Ejrup",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wexr/EksamenThirdSem"
+  },
+  "homepage": "https://github.com/wexr/EksamenThirdSem"
+}
