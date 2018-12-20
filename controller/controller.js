@@ -87,6 +87,10 @@ exports.hentinfo3 = function (req, res) {
 
 }
 
+//Post Request til at indsætte nyt data i kunde tabel & konto tabel.
+//Begge post request(kunde tabel & konti tabel), vil ikke blive implementeret på hjemme side da det vil tage for lang tid.
+//Begge er dog teste med Postman og virker.
+
 exports.opretinfo = function (req, res) {
     //Laver connection til DB 
     var con = mysql.createConnection({

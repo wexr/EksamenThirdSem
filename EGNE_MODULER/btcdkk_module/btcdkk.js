@@ -18,7 +18,7 @@ function btcdkk(bitcoin){
           //Laver hele JSON filen om til et object.  
           var myObj = JSON.parse(this.responseText);
           //printer dkk kurs
-          kurs = ((myObj.ticker.price)*7.42);
+          kurs = ((myObj.ticker.price)*7.46);
           console.log("1 Bitcoin tilsvarer: " + (kurs) + " DKK");
           
         return kurs;
