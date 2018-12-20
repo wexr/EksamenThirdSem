@@ -2,12 +2,9 @@ function btcdkk(bitcoin){
 
     var antalBitcoin = bitcoin;
 
-
     //url til api
     var url = "https://api.cryptonator.com/api/ticker/btc-eur"
     
-
-
     //require http request
     var xhr = require('xmlhttprequest').XMLHttpRequest
     var xmlhttp = new xhr;
@@ -20,17 +17,18 @@ function btcdkk(bitcoin){
     
           //Laver hele JSON filen om til et object.  
           var myObj = JSON.parse(this.responseText);
-          //printer temperaturen
-          console.log("nuværende bitcoin pris i euro: " +myObj.ticker.price);
+          //printer dkk kurs
           kurs = ((myObj.ticker.price)*7.42);
+          console.log("1 Bitcoin tilsvarer: " + (kurs) + " DKK");
+          
         return kurs;
         }
     };
 
-    //åbner requesten
+    //Åbner GET Requesten
     xmlhttp.open("GET", url, true);
-    //sender requesten
+    //Sender Requesten
     xmlhttp.send();
     }
-    //exporter den
+    //EXPORT
     exports.convert = btcdkk;
